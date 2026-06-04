@@ -128,3 +128,6 @@ http://localhost:5000
 | Auth | JWT + bcryptjs |
 | Security | Helmet, CORS |
 | Frontend | Vanilla HTML/CSS/JS |
+#live on Render
+https://noteflow-rt48.onrender.com/
+
