@@ -1,133 +1,182 @@
-# NoteFlow - Online Notes Application
+📝 NoteFlow - Online Notes Application
+A Modern Full-Stack Notes Management Platform
 
-A full-stack notes application built with Node.js, Express, Firebase Firestore, and a vanilla HTML/CSS/JS frontend.
+Store, organize, search, and manage your notes securely with Firebase Firestore and JWT Authentication.
 
-## Project Structure
 
-```text
+
+
+
+
+
+
+
+🌐 Live Application: https://noteflow-rt48.onrender.com/
+
+✨ Features
+🔐 Authentication & Security
+User Registration & Login
+JWT Authentication
+Password Hashing with bcryptjs
+Protected Routes
+Secure Session Management
+📝 Notes Management
+Create Notes
+Edit Notes
+Delete Notes
+Restore Deleted Notes
+Permanent Deletion
+Trash Management
+Note Statistics
+🏷️ Tags & Organization
+Create Tags
+Organize Notes
+Filter Notes by Tags
+Better Content Management
+⚡ Performance
+Fast Firestore Queries
+RESTful API Architecture
+Optimized Backend Structure
+Responsive Frontend
+🏗️ Project Architecture
 noteflow-app/
 ├── backend/
 │   ├── config/
-│   │   └── firebase.js
 │   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── noteController.js
-│   │   └── tagController.js
 │   ├── middleware/
-│   │   ├── auth.js
-│   │   └── errorHandler.js
 │   ├── routes/
-│   │   ├── auth.js
-│   │   ├── notes.js
-│   │   └── tags.js
 │   ├── server.js
-│   ├── package.json
-│   └── .env.example
+│   └── package.json
+│
 ├── frontend/
 │   ├── pages/
 │   └── public/
+│
 ├── package.json
 └── README.md
-```
+🚀 Tech Stack
+Backend
+Technology	Purpose
+Node.js	Runtime Environment
+Express.js	Backend Framework
+Firebase Firestore	Database
+JWT	Authentication
+bcryptjs	Password Hashing
+Helmet	Security Headers
+CORS	Cross-Origin Resource Sharing
+Frontend
+Technology	Purpose
+HTML5	Structure
+CSS3	Styling
+JavaScript	Client-side Logic
+🛠️ Technologies Used
+⚙️ Installation
+Clone Repository
+git clone https://github.com/your-username/noteflow.git
 
-## Quick Start
-
-### Prerequisites
-
-- Node.js v16+
-- A Firebase project with Firestore enabled
-- A Firebase service account JSON key
-
-### 1. Install dependencies
-
-```bash
+cd noteflow
+Install Dependencies
 npm run setup
-```
+🔥 Firebase Configuration
 
-### 2. Configure Firebase
+Create:
 
-In Firebase Console:
-
-1. Open your Firebase project.
-2. Go to Project settings > Service accounts.
-3. Click Generate new private key.
-4. Save the downloaded file as:
-
-```text
 backend/serviceAccountKey.json
-```
 
-Then make sure `backend/.env` contains:
+Update:
 
-```env
 PORT=5000
+
 NODE_ENV=development
+
 FRONTEND_URL=http://localhost:5000
-JWT_SECRET=your_strong_secret_key_here
+
+JWT_SECRET=your_secret_key
+
 JWT_EXPIRE=7d
+
 FIREBASE_SERVICE_ACCOUNT_PATH=./serviceAccountKey.json
-```
+📦 Run Application
 
-### 3. Enable Firestore
+Development Mode
 
-In Firebase Console:
-
-1. Go to Build > Firestore Database.
-2. Create database.
-3. Start in production or test mode.
-4. Choose a region and create it.
-
-The backend uses Firebase Admin SDK, so Firestore security rules do not block your server-side requests.
-
-### 4. Start the app
-
-```bash
 npm run dev
-```
+
+Production Mode
+
+npm start
 
 Open:
 
-```text
 http://localhost:5000
-```
+📚 API Reference
+Authentication
+Method	Endpoint
+POST	/api/auth/register
+POST	/api/auth/login
+GET	/api/auth/me
+PUT	/api/auth/profile
+PUT	/api/auth/change-password
+Notes
+Method	Endpoint
+GET	/api/notes
+POST	/api/notes
+GET	/api/notes/stats
+GET	/api/notes/trash
+DELETE	/api/notes/trash/empty
+GET	/api/notes/
+PUT	/api/notes/
+DELETE	/api/notes/
+PUT	/api/notes//restore
+DELETE	/api/notes//permanent
+🌍 Deployment
+Render
 
-## API Reference
+The application is deployed on Render.
 
-### Auth
+🔗 Live URL:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Create account |
-| POST | `/api/auth/login` | Sign in |
-| GET | `/api/auth/me` | Get current user |
-| PUT | `/api/auth/profile` | Update profile |
-| PUT | `/api/auth/change-password` | Change password |
-
-### Notes
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/notes` | Get all notes |
-| POST | `/api/notes` | Create note |
-| GET | `/api/notes/stats` | Get note statistics |
-| GET | `/api/notes/trash` | Get trashed notes |
-| DELETE | `/api/notes/trash/empty` | Empty trash |
-| GET | `/api/notes/:id` | Get single note |
-| PUT | `/api/notes/:id` | Update note |
-| DELETE | `/api/notes/:id` | Move to trash |
-| PUT | `/api/notes/:id/restore` | Restore from trash |
-| DELETE | `/api/notes/:id/permanent` | Permanent delete |
-
-## Tech Stack
-
-| Layer | Tech |
-|-------|------|
-| Runtime | Node.js |
-| Framework | Express.js |
-| Database | Firebase Firestore |
-| Auth | JWT + bcryptjs |
-| Security | Helmet, CORS |
-| Frontend | Vanilla HTML/CSS/JS |
-#live on Render
 https://noteflow-rt48.onrender.com/
 
+📸 Screenshots
+
+Add screenshots here:
+
+assets/dashboard.png
+
+assets/login.png
+
+assets/notes.png
+🎯 Future Improvements
+Rich Text Editor
+Note Sharing
+Real-Time Collaboration
+Dark Mode
+File Upload Support
+AI Note Summarization
+Search Optimization
+🤝 Contributing
+
+Contributions are welcome.
+
+Fork the Repository
+Create a Feature Branch
+git checkout -b feature/new-feature
+Commit Changes
+git commit -m "Added new feature"
+Push
+git push origin feature/new-feature
+Create Pull Request
+📄 License
+
+MIT License
+
+Copyright (c) 2026 Ashish Kumar Ranjan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+⭐ If you found this project useful, consider giving it a star on GitHub!
+
+Made with ❤️ by Ashish Kumar Ranja
