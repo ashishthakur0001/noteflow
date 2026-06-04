@@ -40,13 +40,19 @@
 
 ---
 
-## 🖼️ Screenshots
+## 🖼️ Live App
 
-> _Add your screenshots here for maximum impact_
+<p align="center">
+  <a href="https://noteflow-rt48.onrender.com/" target="_blank">
+    <img src="https://img.shields.io/badge/▶_Open_Live_App-noteflow--rt48.onrender.com-6366F1?style=for-the-badge&logo=render&logoColor=white" alt="Open Live App" />
+  </a>
+</p>
+
+> 📸 _To add screenshots: upload `login.png`, `dashboard.png`, `notes.png` to an `assets/` folder in your repo, then they'll appear here automatically._
 
 | Login | Dashboard | Notes View |
 |-------|-----------|------------|
-| ![Login](assets/login.png) | ![Dashboard](assets/dashboard.png) | ![Notes](assets/notes.png) |
+| ![Login](https://placehold.co/320x200/6366f1/ffffff?text=Login+Page) | ![Dashboard](https://placehold.co/320x200/6366f1/ffffff?text=Dashboard) | ![Notes](https://placehold.co/320x200/6366f1/ffffff?text=Notes+View) |
 
 ---
 
@@ -179,7 +185,11 @@ Visit: [http://localhost:5000](http://localhost:5000)
 
 NoteFlow is deployed on **[Render](https://render.com)** with automatic deploys from `main`.
 
-**Live URL:** [https://noteflow-rt48.onrender.com/](https://noteflow-rt48.onrender.com/)
+**Live URL:**
+
+[![Deploy to Render](https://img.shields.io/badge/Deployed_on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://noteflow-rt48.onrender.com/)
+
+🔗 **[https://noteflow-rt48.onrender.com/](https://noteflow-rt48.onrender.com/)**
 
 > _Note: Free-tier Render instances spin down after inactivity — the first request may take ~30 seconds._
 
