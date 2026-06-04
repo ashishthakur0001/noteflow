@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — NoteFlow</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+
+<div class="app-layout">
+
+  <!-- ══════════════════ SIDEBAR ══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-mark">N</div>
+        <span class="sidebar-logo-text">NoteFlow</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- Main Nav -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Notes</div>
+        <button class="sidebar-item active" data-section="all">
+          <span class="item-icon">📝</span>
+          <span>All Notes</span>
+          <span class="item-count" id="count-all">0</span>
+        </button>
+        <button class="sidebar-item" data-section="pinned">
+          <span class="item-icon">📌</span>
+          <span>Pinned</span>
+          <span class="item-count" id="count-pinned">0</span>
+        </button>
+        <button class="sidebar-item" data-section="archived">
+          <span class="item-icon">📦</span>
+          <span>Archive</span>
+          <span class="item-count" id="count-archived">0</span>
+        </button>
+        <button class="sidebar-item" data-section="trash">
+          <span class="item-icon">🗑️</span>
+          <span>Trash</span>
+          <span class="item-count" id="count-trash">0</span>
+        </button>
+      </div>
+
+      <!-- Tags -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Tags</div>
+        <div id="tags-list">
+          <div style="padding:8px 10px;font-size:.8rem;color:var(--muted)">Loading tags…</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="dropdown">
+        <div class="user-card" id="user-menu-btn">
+          <div class="user-avatar"></div>
+          <div style="flex:1;min-width:0">
+            <div class="user-name truncate"></div>
+            <div class="user-email truncate"></div>
+          </div>
+          <span style="color:var(--muted);font-size:.8rem">⌄</span>
+        </div>
+        <div class="dropdown-menu hidden" id="user-dropdown">
+          <button class="dropdown-item" id="theme-toggle">🌙 Dark mode</button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item danger" id="logout-btn">↩ Sign out</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════════════ MAIN ══════════════════ -->
+  <div class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="sidebar-toggle btn-icon" id="sidebar-toggle">☰</button>
+      <h1 class="topbar-title" id="page-title">All Notes</h1>
+
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search notes…" autocomplete="off">
+      </div>
+
+      <div class="topbar-actions">
+        <!-- Trash-only action -->
+        <button class="btn btn-danger btn-sm hidden" id="empty-trash-btn">Empty trash</button>
+
+        <div class="view-toggle">
+          <button class="view-btn active" data-view="grid" title="Grid view">⊞</button>
+          <button class="view-btn" data-view="list" title="List view">☰</button>
+        </div>
+
+        <button class="btn btn-accent btn-sm" id="new-note-topbar" onclick="document.getElementById('fab-new').click()">+ New note</button>
+      </div>
+    </header>
+
+    <!-- Notes Area -->
+    <main class="notes-area" id="notes-area">
+      <!-- Pinned Section -->
+      <div id="pinned-section" class="pinned-section hidden">
+        <div class="section-header">
+          <h2>📌 Pinned</h2>
+        </div>
+        <div id="pinned-container" class="notes-grid"></div>
+        <div class="section-header" style="margin-top:32px">
+          <h2>Others</h2>
+        </div>
+      </div>
+
+      <!-- Main Notes -->
+      <div id="notes-container" class="notes-grid">
+        <!-- Skeleton placeholders while loading -->
+        <div class="note-card" style="background:var(--white)">
+          <div class="skeleton" style="height:16px;width:70%;margin-bottom:10px"></div>
+          <div class="skeleton" style="height:12px;width:100%;margin-bottom:6px"></div>
+          <div class="skeleton" style="height:12px;width:85%"></div>
+        </div>
+        <div class="note-card" style="background:var(--note-yellow)">
+          <div class="skeleton" style="height:16px;width:55%;margin-bottom:10px"></div>
+          <div class="skeleton" style="height:12px;width:100%;margin-bottom:6px"></div>
+          <div class="skeleton" style="height:12px;width:65%"></div>
+        </div>
+        <div class="note-card" style="background:var(--note-blue)">
+          <div class="skeleton" style="height:16px;width:80%;margin-bottom:10px"></div>
+          <div class="skeleton" style="height:12px;width:90%;margin-bottom:6px"></div>
+          <div class="skeleton" style="height:12px;width:70%"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ══════════════════ FAB ══════════════════ -->
+<button class="fab" id="fab-new" title="New note">+</button>
+
+<!-- ══════════════════ EDITOR PANEL ══════════════════ -->
+<div class="editor-panel hidden" id="editor-panel">
+  <div class="editor-modal" id="editor-panel-modal">
+    <div class="editor-color-bar" id="editor-color-bar"></div>
+
+    <!-- Editor Topbar -->
+    <div class="editor-topbar">
+      <input type="text" class="editor-title-input" id="editor-title" placeholder="Note title…" maxlength="200">
+      <button class="btn-icon" id="editor-close" title="Close (Esc)">✕</button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="editor-toolbar">
+      <button class="toolbar-btn toolbar-fmt-btn" data-fmt="bold" title="Bold"><b>B</b></button>
+      <button class="toolbar-btn toolbar-fmt-btn" data-fmt="italic" title="Italic"><i>I</i></button>
+      <button class="toolbar-btn toolbar-fmt-btn" data-fmt="code" title="Code"><code style="font-size:.8em">{ }</code></button>
+      <span class="toolbar-sep"></span>
+      <span style="font-size:.78rem;color:var(--muted)">Ctrl+S to save · Esc to close</span>
+    </div>
+
+    <!-- Content -->
+    <div class="editor-body">
+      <textarea
+        class="editor-content"
+        id="editor-content"
+        placeholder="Start writing… (Markdown supported)"
+        rows="10"></textarea>
+    </div>
+
+    <!-- Footer -->
+    <div class="editor-footer">
+      <!-- Color Picker -->
+      <div class="color-picker">
+        <span style="font-size:.75rem;color:var(--muted);margin-right:2px">Color:</span>
+        <div class="color-dot selected" data-color="#ffffff" style="background:#e5e5e5;border-color:var(--border)" title="White"></div>
+        <div class="color-dot" data-color="#fef9c3" style="background:#fef9c3" title="Yellow"></div>
+        <div class="color-dot" data-color="#fce7f3" style="background:#fce7f3" title="Pink"></div>
+        <div class="color-dot" data-color="#dbeafe" style="background:#dbeafe" title="Blue"></div>
+        <div class="color-dot" data-color="#dcfce7" style="background:#dcfce7" title="Green"></div>
+        <div class="color-dot" data-color="#ede9fe" style="background:#ede9fe" title="Purple"></div>
+        <div class="color-dot" data-color="#ffedd5" style="background:#ffedd5" title="Orange"></div>
+        <div class="color-dot" data-color="#ccfbf1" style="background:#ccfbf1" title="Teal"></div>
+      </div>
+
+      <!-- Tags -->
+      <div class="tags-input-wrap" style="flex:1;margin-left:8px">
+        <span style="font-size:.75rem;color:var(--muted);white-space:nowrap">🏷 Tags:</span>
+        <input type="text" class="tags-input" id="tags-input" placeholder="Add tag, press Enter">
+      </div>
+
+      <!-- Word count + Save -->
+      <span class="editor-stats" id="editor-word-count">0 words</span>
+      <button class="btn btn-accent btn-sm editor-save-btn" id="editor-save-btn">Create</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

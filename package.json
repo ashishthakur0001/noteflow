@@ -1,0 +1,14 @@
+{
+  "name": "noteflow-app",
+  "version": "1.0.0",
+  "description": "Full-stack Online Notes Application with Node.js, Express, Firebase Firestore",
+  "scripts": {
+    "start": "cd backend && node server.js",
+    "dev": "cd backend && npx nodemon server.js",
+    "setup": "cd backend && npm install",
+    "install-all": "cd backend && npm install"
+  },
+  "keywords": ["notes", "nodejs", "express", "firebase", "firestore", "fullstack"],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — NoteFlow</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+<script src="/js/utils.js"></script>
+<script src="/js/api.js"></script>
+
+<div class="auth-page">
+  <!-- Left Panel -->
+  <div class="auth-left">
+    <div class="auth-brand">
+      <div class="auth-brand-mark">N</div>
+      <span class="auth-brand-name">NoteFlow</span>
+    </div>
+    <div class="auth-hero">
+      <h2 class="auth-hero-title">
+        Your ideas<br>deserve a<br><em>great home</em>
+      </h2>
+      <p class="auth-hero-desc">Sign in and pick up right where you left off. All your notes, perfectly organized.</p>
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔒</div>
+          <span>Secure JWT authentication</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">☁️</div>
+          <span>Synced across all devices</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">⚡</div>
+          <span>Instant search & filtering</span>
+        </div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.8rem">Don't have an account? <a href="/register" style="color:var(--accent-2)">Create one free →</a></p>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+      <h1 class="auth-form-title">Welcome back</h1>
+      <p class="auth-form-subtitle">Sign in to your NoteFlow account</p>
+
+      <div id="form-error" class="form-error hidden"></div>
+
+      <form class="auth-form" id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email address</label>
+          <input
+            class="form-input" type="email" id="email"
+            placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="password-wrap">
+            <input
+              class="form-input" type="password" id="password"
+              placeholder="Your password" autocomplete="current-password" required>
+            <button type="button" class="password-toggle" tabindex="-1">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+
+      <div class="auth-divider" style="margin-top:24px">or</div>
+      <div class="auth-switch" style="margin-top:16px">
+        Don't have an account? <a href="/register">Create one free</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="/js/auth.js"></script>
+</body>
+</html>

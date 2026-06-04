@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoteFlow — Beautiful Online Notes</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .landing { min-height: 100vh; display: flex; flex-direction: column; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-mark {
+      width: 36px; height: 36px; background: var(--ink);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: var(--cream); font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+    }
+    .nav-logo-text { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+    .nav-links { display: flex; gap: 8px; }
+
+    .hero {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 80px 40px 60px;
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 120%, var(--accent-bg) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 99px;
+      background: var(--accent-bg); color: var(--accent);
+      font-size: .8rem; font-weight: 500; margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1; max-width: 700px; margin-bottom: 20px;
+    }
+    .hero-title em { color: var(--accent); font-style: normal; }
+    .hero-desc {
+      font-size: 1.1rem; color: var(--ink-2); max-width: 500px;
+      line-height: 1.7; margin-bottom: 36px;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    /* Features */
+    .features-section {
+      padding: 80px 60px;
+      background: var(--surface);
+    }
+    .features-header { text-align: center; margin-bottom: 50px; }
+    .features-header h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px; }
+    .features-header p { color: var(--muted); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--white); border-radius: var(--r-xl);
+      padding: 28px; border: 1.5px solid var(--border);
+      transition: transform var(--t-fast), box-shadow var(--t-fast);
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .feature-icon { font-size: 2rem; margin-bottom: 14px; }
+    .feature-title { font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+    .feature-desc { color: var(--muted); font-size: .875rem; line-height: 1.6; }
+
+    /* Footer */
+    footer {
+      text-align: center; padding: 28px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .85rem;
+      background: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .features-section { padding: 50px 20px; }
+    }
+  </style>
+</head>
+<body>
+<script src="/js/utils.js"></script>
+
+<div class="landing">
+  <nav class="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-mark">N</div>
+      <span class="nav-logo-text">NoteFlow</span>
+    </div>
+    <div class="nav-links">
+      <a href="/login" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="/register" class="btn btn-accent btn-sm">Get Started</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">✦ Your thoughts, beautifully organized</div>
+    <h1 class="hero-title">
+      Where your best<br>ideas <em>live & breathe</em>
+    </h1>
+    <p class="hero-desc">
+      NoteFlow is a beautiful, fast, and distraction-free notes app.
+      Capture anything, organize everything, access from anywhere.
+    </p>
+    <div class="hero-cta">
+      <a href="/register" class="btn btn-accent btn-lg">Start for free →</a>
+      <a href="/login" class="btn btn-ghost btn-lg">Sign in</a>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="features-header">
+      <h2>Everything you need</h2>
+      <p>Simple yet powerful — built for focused writing and organization</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <div class="feature-title">Rich Notes</div>
+        <div class="feature-desc">Write anything with a clean, distraction-free editor. Format with Markdown-style shortcuts.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <div class="feature-title">Smart Tags</div>
+        <div class="feature-desc">Organize notes with tags and filter instantly. Find anything in seconds with full-text search.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📌</div>
+        <div class="feature-title">Pin & Archive</div>
+        <div class="feature-desc">Keep important notes pinned at the top. Archive old ones without deleting them.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <div class="feature-title">Color Themes</div>
+        <div class="feature-desc">Assign colors to notes for visual organization. Light and dark mode supported.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Secure & Private</div>
+        <div class="feature-desc">Notes are secured with JWT authentication. Your data stays yours.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">♻️</div>
+        <div class="feature-title">Trash & Restore</div>
+        <div class="feature-desc">Accidentally deleted a note? Restore it from trash before permanent deletion.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>NoteFlow &copy; 2025 — Built with Node.js, Express & Firebase</p>
+  </footer>
+</div>
+
+<div id="toast-container"></div>
+</body>
+</html>
